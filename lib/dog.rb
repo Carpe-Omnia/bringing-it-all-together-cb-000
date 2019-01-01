@@ -1,6 +1,6 @@
 class Dog
   attr_accessor :id, :name, :breed
-  def initialize(name, breed, id=nil)
+  def initialize(name:, breed:, id:=nil)
     @name = name
     @breed = breed
     @id = id
@@ -31,5 +31,33 @@ class Dog
       self.update
     end
   end
-
+  def self.create(name, breed)
+    stud = self.new(name, breed)
+    stud.save
+    stud
+  end
+  def self.find_by_name(name)
+    sql = <<-SQL
+     SELECT * FROM dogs
+     WHERE name = ? ;
+    SQL
+   row = DB[:conn].execute(sql, name)
+   self.new_from_db(row[0])
+  end
+  def self.new_from_db(row)
+    stud = self.new(row[1],row[2],row[0])
+    stud
+  end
+  def self.find_by_name(name)
+    sql = <<-SQL
+     SELECT * FROM dogs
+     WHERE name = ? ;
+    SQL
+   row = DB[:conn].execute(sql, name)
+   self.new_from_db(row[0])
+  end
+  def update
+    sql = "UPDATE dogs SET name = ?, breed = ? WHERE id = ?"
+    DB[:conn].execute(sql, self.name, self.breed, self.id)
+  end
 end
