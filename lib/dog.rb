@@ -70,10 +70,12 @@ class Dog
    doggo
   end
   def self.find_or_create_by(hash)
+    name = hash[:name]
+    breed = hash[:breed]
     sql = <<-SQL SELECT *
-    FROM dogs 
-    WHERE name = ?, breed = ? 
-    SQL 
-    
-  end   
+    FROM dogs
+    WHERE name = ?, breed = ?
+    SQL
+    row = DB[:conn].execute(sql, name, breed) 
+  end
 end
