@@ -72,10 +72,10 @@ class Dog
   def self.find_or_create_by(hash)
     name = hash[:name]
     breed = hash[:breed]
-    sql = <<-SQL SELECT *
+    sql =  "SELECT *
     FROM dogs
-    WHERE name = ?, breed = ?;
-    SQL
+    WHERE name = ?, breed = ?;"
+
     row = DB[:conn].execute(sql, name, breed)
     if row[0]
       self.find_by_id(row[0][0])
