@@ -53,7 +53,7 @@ class Dog
   def self.new_from_db(row)
     hash = {id: row[0], name: row[1], breed: row[2]}
     stud = self.new(hash)
-    stud
+    stud.save 
   end
 
   def update
@@ -76,6 +76,8 @@ class Dog
     FROM dogs
     WHERE name = ?, breed = ?
     SQL
-    row = DB[:conn].execute(sql, name, breed) 
+    row = DB[:conn].execute(sql, name, breed)
+    if row[0]
+      
   end
 end
