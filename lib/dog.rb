@@ -69,4 +69,11 @@ class Dog
    doggo = self.new_from_db(row)
    doggo
   end
+  def self.find_or_create_by(hash)
+    sql = <<-SQL SELECT *
+    FROM dogs 
+    WHERE name = ?, breed = ? 
+    SQL 
+    
+  end   
 end
