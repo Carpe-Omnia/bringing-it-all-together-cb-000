@@ -53,7 +53,7 @@ class Dog
   def self.new_from_db(row)
     hash = {id: row[0], name: row[1], breed: row[2]}
     stud = self.new(hash)
-    stud.save 
+    stud.save
   end
 
   def update
@@ -78,6 +78,9 @@ class Dog
     SQL
     row = DB[:conn].execute(sql, name, breed)
     if row[0]
-      
+      self.find_by_id(row[0][0])
+    else
+      self.create(hash)
+    end
   end
 end
