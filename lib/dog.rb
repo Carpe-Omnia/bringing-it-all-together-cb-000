@@ -74,7 +74,7 @@ class Dog
     breed = hash[:breed]
     sql =  "SELECT *
     FROM dogs
-    WHERE name = ?, breed = ?;"
+    WHERE name = ? AND breed = ?;"
 
     row = DB[:conn].execute(sql, name, breed)
     if row[0]
