@@ -54,14 +54,7 @@ class Dog
     stud = self.new(row[1],row[2],row[0])
     stud
   end
-  def self.find_by_name(name)
-    sql = <<-SQL
-     SELECT * FROM dogs
-     WHERE name = ? ;
-    SQL
-   row = DB[:conn].execute(sql, name)
-   self.new_from_db(row[0])
-  end
+
   def update
     sql = "UPDATE dogs SET name = ?, breed = ? WHERE id = ?"
     DB[:conn].execute(sql, self.name, self.breed, self.id)
