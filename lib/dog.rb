@@ -51,7 +51,7 @@ class Dog
    self.new_from_db(row[0])
   end
   def self.new_from_db(row)
-    stud = self.new(row[1],row[2],row[0])
+    stud = self.new(row)
     stud
   end
 
