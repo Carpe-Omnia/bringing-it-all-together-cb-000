@@ -51,7 +51,8 @@ class Dog
    self.new_from_db(row[0])
   end
   def self.new_from_db(row)
-    stud = self.new(row)
+    hash = {id: row[0], name: row[1], breed: row[2]}
+    stud = self.new(hash)
     stud
   end
 
