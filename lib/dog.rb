@@ -66,7 +66,7 @@ class Dog
      WHERE id = ? ;
     SQL
    row = DB[:conn].execute(sql, id)[0]
-   doggo = self.new_from_db(row])
+   doggo = self.new_from_db(row)
    doggo
   end
 end
