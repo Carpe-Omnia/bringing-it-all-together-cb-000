@@ -1,10 +1,10 @@
 class Dog
   attr_accessor :id, :name, :breed
   def initialize(hash)
-    @name = hash["name"]
-    @breed = hash["breed"]
-    if hash["id"] != nil
-      @id = hash["id"]
+    @name = hash[:name]
+    @breed = hash[:breed]
+    if hash[:id] != nil
+      @id = hash[:id]
     else
       @id = nil
     end
